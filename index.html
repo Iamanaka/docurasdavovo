@@ -21,10 +21,11 @@
             <a href="#inicio" class="flex items-center space-x-2">
                 <!-- Usando um ícone simples para simular a imagem da "senhorinha" -->
                 <img src="/images/logodocurasdavovo.jpeg" alt="Logo Vovó" class="w-8 h-8 rounded-full shadow-md transform hover:scale-110 transition duration-300">
-                <h1 class="text-2xl font-bold text-pink-600">Doçuras da Vovó</h1>
+                <h1 class="text-2xl font-bold text-pink-600 hidden sm:block">Doçuras da Vovó</h1>
             </a>
 
-            <nav class="flex items-center space-x-4">
+            <!-- Desktop nav (escondido em telas pequenas) -->
+            <nav class="hidden sm:flex items-center space-x-4">
                 <a href="#produtos" class="text-gray-600 hover:text-pink-600 transition duration-150">Produtos</a>
                 <a href="#sobre" class="text-gray-600 hover:text-pink-600 transition duration-150">Sobre</a>
                 <a href="#contato" class="text-gray-600 hover:text-pink-600 transition duration-150">Contato</a>
@@ -33,6 +34,18 @@
                     🎄 Cardápio de Natal 2025
                 </a>
             </nav>
+
+            <!-- Botão de menu móvel (aparece em telas pequenas) -->
+            <button id="mobile-menu-button" class="sm:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-pink-600" aria-label="Abrir menu">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+        <!-- Menu móvel que aparece quando o botão é ativado -->
+        <div id="mobile-menu" class="sm:hidden hidden px-4 pb-4">
+            <a href="#produtos" class="block text-gray-700 py-2">Produtos</a>
+            <a href="#sobre" class="block text-gray-700 py-2">Sobre</a>
+            <a href="#contato" class="block text-gray-700 py-2">Contato</a>
+            <a href="natal.html" class="block bg-pink-600 text-white font-bold py-2 px-4 rounded-full mt-2">🎄 Cardápio de Natal 2025</a>
         </div>
     </header>
 
@@ -72,7 +85,7 @@
 
                 <!-- Cartão de Produto 1: Bolo -->
                 <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border border-yellow-200">
-                    <img src="https://placehold.co/400x300/F9E79F/5C4033?text=Bolo+da+Vovó" alt="Bolo de Cenoura com Brigadeiro" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <img src="/images/bolo-cenoura-brigadeiro.jpeg" alt="Bolo de Cenoura com Brigadeiro" loading="lazy" class="w-full h-40 md:h-48 object-cover rounded-lg mb-4">
                     <h4 class="text-xl font-semibold text-gray-700 mb-2">Bolo de Cenoura da Vovó</h4>
                     <p class="text-pink-600 text-2xl font-bold mb-4">R$ 95,00</p>
                     <p class="text-gray-500 text-sm mb-4">
@@ -85,7 +98,7 @@
 
                 <!-- Cartão de Produto 2: Brigadeiros -->
                 <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border border-yellow-200">
-                    <img src="https://placehold.co/400x300/F9E79F/5C4033?text=Brigadeiros+Gourmet" alt="Kit Brigadeiros Gourmet" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <img src="/images/kit-brigadeiros.jpeg" alt="Kit Brigadeiros Gourmet" loading="lazy" class="w-full h-40 md:h-48 object-cover rounded-lg mb-4">
                     <h4 class="text-xl font-semibold text-gray-700 mb-2">Kit 12 Brigadeiros Gourmet</h4>
                     <p class="text-pink-600 text-2xl font-bold mb-4">R$ 48,00</p>
                     <p class="text-gray-500 text-sm mb-4">
@@ -98,7 +111,7 @@
 
                 <!-- Cartão de Produto 3: Trufas -->
                 <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border border-yellow-200">
-                    <img src="https://placehold.co/400x300/F9E79F/5C4033?text=Trufas+Recheadas" alt="Trufas Recheadas" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <img src="/images/trufas-recheadas.jpeg" alt="Trufas Recheadas" loading="lazy" class="w-full h-40 md:h-48 object-cover rounded-lg mb-4">
                     <h4 class="text-xl font-semibold text-gray-700 mb-2">Trufas Recheadas (Caixa c/ 6)</h4>
                     <p class="text-pink-600 text-2xl font-bold mb-4">R$ 35,00</p>
                     <p class="text-gray-500 text-sm mb-4">
@@ -190,6 +203,53 @@
             </button>
         </div>
     </div>
+
+    <!-- Script: toggle do menu móvel + tentativa automática de extensões alternativas se a imagem falhar -->
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Toggle menu móvel
+        const mobileBtn = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileBtn && mobileMenu) {
+            mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        }
+
+        // Fallback de imagens: tenta várias extensões
+        const imgs = document.querySelectorAll('header img, #produtos img');
+        const exts = ['.jpeg', '.jpg', '.png'];
+
+        imgs.forEach(img => {
+            let src = img.getAttribute('src') || '';
+            const m = src.match(/^(.*?)(?:\.[a-zA-Z0-9]{1,5})?$/);
+            const base = m ? m[1] : src;
+            img.dataset._baseSrc = base;
+            img.dataset._tried = JSON.stringify([]);
+
+            const onError = function() {
+                let tried = JSON.parse(this.dataset._tried || '[]');
+                const next = exts.find(e => !tried.includes(e));
+                if (next) {
+                    tried.push(next);
+                    this.dataset._tried = JSON.stringify(tried);
+                    this.removeEventListener('error', onError);
+                    this.src = this.dataset._baseSrc + next;
+                    setTimeout(() => this.addEventListener('error', onError), 50);
+                    return;
+                }
+
+                this.removeEventListener('error', onError);
+                this.src = 'https://placehold.co/80x80/F5F5F5/AAA?text=Icon';
+            };
+
+            if (!/\.[a-zA-Z0-9]{1,5}$/.test(src)) {
+                img.src = base + '.jpeg';
+                img.dataset._tried = JSON.stringify(['.jpeg']);
+            }
+
+            img.addEventListener('error', onError);
+        });
+    });
+    </script>
 
 </body>
 </html>
