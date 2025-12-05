@@ -4,32 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🎄 Cardápio de Natal 2025 - Doçuras da Vovó</title>
-    <!-- Carrega o Tailwind CSS para estilização rápida e responsiva -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; }
+        
+        /* Animação do Carrinho */
+        @keyframes slideIn {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+        .animate-slide-in {
+            animation: slideIn 0.3s ease-out;
+        }
     </style>
 </head>
 <body class="bg-red-50 text-gray-800">
 
-    <!-- Navegação (Header) -->
-    <header class="bg-red-800 shadow-md sticky top-0 z-50">
+    <header class="bg-red-800 shadow-md sticky top-0 z-40">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-            <!-- Logo e Nome da Loja -->
             <a href="index.html" class="flex items-center space-x-2 text-white hover:text-yellow-300 transition duration-300">
                 <h1 class="text-2xl font-bold">Doçuras da Vovó</h1>
             </a>
             <nav class="flex items-center space-x-4">
-                <!-- Link para Voltar à Loja Principal -->
-                <a href="index.html" class="bg-yellow-500 text-red-800 font-bold py-2 px-4 rounded-full shadow-lg hover:bg-yellow-600 transition duration-300 transform hover:scale-105">
+                <a href="index.html" class="bg-yellow-500 text-red-900 font-bold py-2 px-4 rounded-full shadow-lg hover:bg-yellow-400 transition duration-300 transform hover:scale-105 text-sm md:text-base">
                     🏠 Voltar à Loja Normal
                 </a>
             </nav>
         </div>
     </header>
 
-    <!-- Seção Principal (Hero de Natal) -->
     <section class="bg-red-600 py-20 md:py-24" id="inicio">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
             <h2 class="text-4xl md:text-6xl font-extrabold mb-4 border-b-4 border-yellow-300 inline-block pb-2">
@@ -38,347 +42,506 @@
             <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-red-100">
                 Encomende a magia da Ceia! Sobremesas artesanais, feitas com a tradição da Vovó.
             </p>
-            <p class="text-lg font-semibold text-yellow-300">
-                Prazo Final para Encomendas: 21 de Dezembro!
+            <p class="text-lg font-semibold text-yellow-300 bg-red-700 inline-block px-4 py-2 rounded-lg">
+                ⚠️ Prazo Final para Encomendas: 21 de Dezembro!
             </p>
         </div>
     </section>
 
-    <!-- Seção de Produtos de Natal -->
     <section class="py-16 md:py-24" id="produtos-natal">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h3 class="text-3xl font-bold text-center mb-12 text-red-700">Sobremesas Festivas na Travessa e Taça</h3>
 
-            <!-- Grid de Produtos de Natal -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
 
-                <!-- Produto 1: Torta Holandesa -->
-<div class="bg-white p-6 rounded-xl shadow-2xl hover:shadow-red-300 transition duration-300 border-t-8 border-red-500">
-    <img src="images/torta-holandesa.jpeg" alt="Torta Holandesa de Natal" class="w-full h-40 md:h-48 object-cover rounded-lg mb-4">
-    <h4 class="text-xl font-semibold text-red-700 mb-2">Torta Holandesa Clássica</h4>
-    <p class="text-green-600 text-2xl font-bold mb-4">A partir de R$ 55,00</p>
-    <ul class="text-gray-600 text-sm mb-4 list-disc pl-5">
-        <li>Travessa 650g: R$ 55,00</li>
-        <li>Travessa 1,5kg: R$ 130,00</li>
-        <li>Travessa 1,2kg: R$ 120,00</li>
-    </ul>
-    <button onclick="comprarNatal('Torta Holandesa', 'A partir de R$ 55,00')" class="w-full bg-red-500 text-white font-semibold py-2 rounded-lg hover:bg-red-600 transition duration-300">
-        Encomendar para o Natal
-    </button>
-</div>
+                <div class="bg-white p-6 rounded-xl shadow-2xl hover:shadow-red-300 transition duration-300 border-t-8 border-red-500 flex flex-col h-full">
+                    <img src="images/torta-holandesa.jpeg" alt="Torta Holandesa de Natal" class="w-full h-40 md:h-48 object-cover rounded-lg mb-4">
+                    <h4 class="text-xl font-semibold text-red-700 mb-2">Torta Holandesa Clássica</h4>
+                    <p class="text-sm text-gray-500 mb-4">Creme leve, base crocante e cobertura de ganache.</p>
+                    
+                    <div class="mt-auto space-y-2">
+                        <button onclick="adicionarAoCarrinho('Torta Holandesa (650g)', 55.00)" class="w-full bg-red-100 text-red-800 text-sm font-bold py-2 px-2 rounded hover:bg-red-200 transition text-left flex justify-between active:scale-95">
+                            <span>Travessa 650g</span> <span>R$ 55,00 +</span>
+                        </button>
+                        <button onclick="adicionarAoCarrinho('Torta Holandesa (1,2kg)', 120.00)" class="w-full bg-red-100 text-red-800 text-sm font-bold py-2 px-2 rounded hover:bg-red-200 transition text-left flex justify-between active:scale-95">
+                            <span>Travessa 1,2kg</span> <span>R$ 120,00 +</span>
+                        </button>
+                        <button onclick="adicionarAoCarrinho('Torta Holandesa (1,5kg)', 130.00)" class="w-full bg-red-100 text-red-800 text-sm font-bold py-2 px-2 rounded hover:bg-red-200 transition text-left flex justify-between active:scale-95">
+                            <span>Travessa 1,5kg</span> <span>R$ 130,00 +</span>
+                        </button>
+                    </div>
+                </div>
 
-<!-- Produto 2: Mousse Maracujá + Chocolate -->
-<div class="bg-white p-6 rounded-xl shadow-2xl hover:shadow-red-300 transition duration-300 border-t-8 border-yellow-500">
-    <img src="images/mousse-maracuja-chocolate.jpeg" alt="Mousse Maracujá e Chocolate" class="w-full h-40 md:h-48 object-cover rounded-lg mb-4">
-    <h4 class="text-xl font-semibold text-red-700 mb-2">Mousse Maracujá e Chocolate</h4>
-    <p class="text-green-600 text-2xl font-bold mb-4">A partir de R$ 60,00</p>
-    <ul class="text-gray-600 text-sm mb-4 list-disc pl-5">
-        <li>Travessa 650g: R$ 60,00</li>
-        <li>Travessa 1,5kg: R$ 135,00</li>
-        <li>Travessa 1,2kg: R$ 120,00</li>
-    </ul>
-    <button onclick="comprarNatal('Mousse Maracujá e Chocolate', 'A partir de R$ 60,00')" class="w-full bg-red-500 text-white font-semibold py-2 rounded-lg hover:bg-red-600 transition duration-300">
-        Encomendar para o Natal
-    </button>
-</div>
+                <div class="bg-white p-6 rounded-xl shadow-2xl hover:shadow-red-300 transition duration-300 border-t-8 border-yellow-500 flex flex-col h-full">
+                    <img src="images/mousse-maracuja-chocolate.jpeg" alt="Mousse Maracujá e Chocolate" class="w-full h-40 md:h-48 object-cover rounded-lg mb-4">
+                    <h4 class="text-xl font-semibold text-red-700 mb-2">Mousse Maracujá e Chocolate</h4>
+                    <p class="text-sm text-gray-500 mb-4">A combinação perfeita do azedinho com o doce.</p>
+                    
+                    <div class="mt-auto space-y-2">
+                        <button onclick="adicionarAoCarrinho('Mousse Maracujá/Choc (650g)', 60.00)" class="w-full bg-yellow-100 text-yellow-800 text-sm font-bold py-2 px-2 rounded hover:bg-yellow-200 transition text-left flex justify-between active:scale-95">
+                            <span>650g</span> <span>R$ 60,00 +</span>
+                        </button>
+                        <button onclick="adicionarAoCarrinho('Mousse Maracujá/Choc (1,2kg)', 120.00)" class="w-full bg-yellow-100 text-yellow-800 text-sm font-bold py-2 px-2 rounded hover:bg-yellow-200 transition text-left flex justify-between active:scale-95">
+                            <span>1,2kg</span> <span>R$ 120,00 +</span>
+                        </button>
+                        <button onclick="adicionarAoCarrinho('Mousse Maracujá/Choc (1,5kg)', 135.00)" class="w-full bg-yellow-100 text-yellow-800 text-sm font-bold py-2 px-2 rounded hover:bg-yellow-200 transition text-left flex justify-between active:scale-95">
+                            <span>1,5kg</span> <span>R$ 135,00 +</span>
+                        </button>
+                    </div>
+                </div>
 
-<!-- Produto 3: Banofee -->
-<div class="bg-white p-6 rounded-xl shadow-2xl hover:shadow-red-300 transition duration-300 border-t-8 border-red-500">
-    <img src="images/banoffee.jpeg" alt="Banofee de Natal" class="w-full h-40 md:h-48 object-cover rounded-lg mb-4">
-    <h4 class="text-xl font-semibold text-red-700 mb-2">Banoffee Luxo (Caramelo e Banana)</h4>
-    <p class="text-green-600 text-2xl font-bold mb-4">A partir de R$ 70,00</p>
-    <ul class="text-gray-600 text-sm mb-4 list-disc pl-5">
-        <li>Travessa 650g: R$ 70,00</li>
-        <li>Travessa 1,5kg: R$ 155,00</li>
-        <li>Travessa 1,2kg: R$ 135,00</li>
-    </ul>
-    <button onclick="comprarNatal('Banoffee Luxo', 'A partir de R$ 70,00')" class="w-full bg-red-500 text-white font-semibold py-2 rounded-lg hover:bg-red-600 transition duration-300">
-        Encomendar para o Natal
-    </button>
-</div>
+                <div class="bg-white p-6 rounded-xl shadow-2xl hover:shadow-red-300 transition duration-300 border-t-8 border-red-500 flex flex-col h-full">
+                    <img src="images/banoffee.jpeg" alt="Banofee de Natal" class="w-full h-40 md:h-48 object-cover rounded-lg mb-4">
+                    <h4 class="text-xl font-semibold text-red-700 mb-2">Banoffee Luxo</h4>
+                    <p class="text-sm text-gray-500 mb-4">Banana, doce de leite artesanal e chantilly.</p>
 
-<!-- Produto 4: Bombom de Uva -->
-<div class="bg-white p-6 rounded-xl shadow-2xl hover:shadow-red-300 transition duration-300 border-t-8 border-yellow-500">
-    <img src="images/bombom-uva.jpeg" alt="Bombom de Uva" class="w-full h-40 md:h-48 object-cover rounded-lg mb-4">
-    <h4 class="text-xl font-semibold text-red-700 mb-2">Bombom de Uva na Travessa</h4>
-    <p class="text-green-600 text-2xl font-bold mb-4">A partir de R$ 65,00</p>
-    <ul class="text-gray-600 text-sm mb-4 list-disc pl-5">
-        <li>Travessa 650g: R$ 65,00</li>
-        <li>Travessa 1,5kg: R$ 140,00</li>
-        <li>Travessa 1,2kg: R$ 120,00</li>
-    </ul>
-    <button onclick="comprarNatal('Bombom de Uva', 'A partir de R$ 65,00')" class="w-full bg-red-500 text-white font-semibold py-2 rounded-lg hover:bg-red-600 transition duration-300">
-        Encomendar para o Natal
-    </button>
-</div>
+                    <div class="mt-auto space-y-2">
+                        <button onclick="adicionarAoCarrinho('Banoffee (650g)', 70.00)" class="w-full bg-red-100 text-red-800 text-sm font-bold py-2 px-2 rounded hover:bg-red-200 transition text-left flex justify-between active:scale-95">
+                            <span>650g</span> <span>R$ 70,00 +</span>
+                        </button>
+                        <button onclick="adicionarAoCarrinho('Banoffee (1,2kg)', 135.00)" class="w-full bg-red-100 text-red-800 text-sm font-bold py-2 px-2 rounded hover:bg-red-200 transition text-left flex justify-between active:scale-95">
+                            <span>1,2kg</span> <span>R$ 135,00 +</span>
+                        </button>
+                        <button onclick="adicionarAoCarrinho('Banoffee (1,5kg)', 155.00)" class="w-full bg-red-100 text-red-800 text-sm font-bold py-2 px-2 rounded hover:bg-red-200 transition text-left flex justify-between active:scale-95">
+                            <span>1,5kg</span> <span>R$ 155,00 +</span>
+                        </button>
+                    </div>
+                </div>
 
-<!-- Produto 5: Bombom de Morango -->
-<div class="bg-white p-6 rounded-xl shadow-2xl hover:shadow-red-300 transition duration-300 border-t-8 border-red-500">
-    <img src="images/bombom-morango.jpeg" alt="Bombom de Morango" class="w-full h-40 md:h-48 object-cover rounded-lg mb-4">
-    <h4 class="text-xl font-semibold text-red-700 mb-2">Bombom de Morango na Travessa</h4>
-    <p class="text-green-600 text-2xl font-bold mb-4">A partir de R$ 75,00</p>
-    <ul class="text-gray-600 text-sm mb-4 list-disc pl-5">
-        <li>Travessa 650g: R$ 75,00</li>
-        <li>Travessa 1,5kg: R$ 165,00</li>
-        <li>Travessa 1,2kg: R$ 140,00</li>
-    </ul>
-    <button onclick="comprarNatal('Bombom de Morango', 'A partir de R$ 75,00')" class="w-full bg-red-500 text-white font-semibold py-2 rounded-lg hover:bg-red-600 transition duration-300">
-        Encomendar para o Natal
-    </button>
-</div>
+                <div class="bg-white p-6 rounded-xl shadow-2xl hover:shadow-red-300 transition duration-300 border-t-8 border-yellow-500 flex flex-col h-full">
+                    <img src="images/bombom-uva.jpeg" alt="Bombom de Uva" class="w-full h-40 md:h-48 object-cover rounded-lg mb-4">
+                    <h4 class="text-xl font-semibold text-red-700 mb-2">Bombom de Uva na Travessa</h4>
+                    
+                    <div class="mt-auto space-y-2">
+                        <button onclick="adicionarAoCarrinho('Bombom de Uva (650g)', 65.00)" class="w-full bg-yellow-100 text-yellow-800 text-sm font-bold py-2 px-2 rounded hover:bg-yellow-200 transition text-left flex justify-between active:scale-95">
+                            <span>650g</span> <span>R$ 65,00 +</span>
+                        </button>
+                        <button onclick="adicionarAoCarrinho('Bombom de Uva (1,2kg)', 120.00)" class="w-full bg-yellow-100 text-yellow-800 text-sm font-bold py-2 px-2 rounded hover:bg-yellow-200 transition text-left flex justify-between active:scale-95">
+                            <span>1,2kg</span> <span>R$ 120,00 +</span>
+                        </button>
+                        <button onclick="adicionarAoCarrinho('Bombom de Uva (1,5kg)', 140.00)" class="w-full bg-yellow-100 text-yellow-800 text-sm font-bold py-2 px-2 rounded hover:bg-yellow-200 transition text-left flex justify-between active:scale-95">
+                            <span>1,5kg</span> <span>R$ 140,00 +</span>
+                        </button>
+                    </div>
+                </div>
 
-<!-- Produto 6: Bombom Mix (Morango/Uva) -->
-<div class="bg-white p-6 rounded-xl shadow-2xl hover:shadow-red-300 transition duration-300 border-t-8 border-pink-500">
-    <img src="images/bombom-mix.jpeg" alt="Bombom Mix (Morango/Uva)" class="w-full h-40 md:h-48 object-cover rounded-lg mb-4">
-    <h4 class="text-xl font-semibold text-red-700 mb-2">Bombom Mix (Morango/Uva)</h4>
-    <p class="text-green-600 text-2xl font-bold mb-4">A partir de R$ 60,00</p>
-    <ul class="text-gray-600 text-sm mb-4 list-disc pl-5">
-        <li>Travessa 650g: R$ 60,00</li>
-        <li>Travessa 1,5kg: R$ 135,00</li>
-        <li>Travessa 1,2kg: R$ 125,00</li>
-    </ul>
-    <button onclick="comprarNatal('Bombom Mix (Morango/Uva)', 'A partir de R$ 60,00')" class="w-full bg-red-500 text-white font-semibold py-2 rounded-lg hover:bg-red-600 transition duration-300">
-        Encomendar para o Natal
-    </button>
-</div>
+                <div class="bg-white p-6 rounded-xl shadow-2xl hover:shadow-red-300 transition duration-300 border-t-8 border-red-500 flex flex-col h-full">
+                    <img src="images/bombom-morango.jpeg" alt="Bombom de Morango" class="w-full h-40 md:h-48 object-cover rounded-lg mb-4">
+                    <h4 class="text-xl font-semibold text-red-700 mb-2">Bombom de Morango</h4>
+                    
+                    <div class="mt-auto space-y-2">
+                        <button onclick="adicionarAoCarrinho('Bombom de Morango (650g)', 75.00)" class="w-full bg-red-100 text-red-800 text-sm font-bold py-2 px-2 rounded hover:bg-red-200 transition text-left flex justify-between active:scale-95">
+                            <span>650g</span> <span>R$ 75,00 +</span>
+                        </button>
+                        <button onclick="adicionarAoCarrinho('Bombom de Morango (1,2kg)', 140.00)" class="w-full bg-red-100 text-red-800 text-sm font-bold py-2 px-2 rounded hover:bg-red-200 transition text-left flex justify-between active:scale-95">
+                            <span>1,2kg</span> <span>R$ 140,00 +</span>
+                        </button>
+                        <button onclick="adicionarAoCarrinho('Bombom de Morango (1,5kg)', 165.00)" class="w-full bg-red-100 text-red-800 text-sm font-bold py-2 px-2 rounded hover:bg-red-200 transition text-left flex justify-between active:scale-95">
+                            <span>1,5kg</span> <span>R$ 165,00 +</span>
+                        </button>
+                    </div>
+                </div>
 
-<!-- Produto 7: Gelado de Abacaxi -->
-<div class="bg-white p-6 rounded-xl shadow-2xl hover:shadow-red-300 transition duration-300 border-t-8 border-yellow-500">
-    <img src="images/gelado-abacaxi.jpeg" alt="Gelado de Abacaxi" class="w-full h-40 md:h-48 object-cover rounded-lg mb-4">
-    <h4 class="text-xl font-semibold text-red-700 mb-2">Gelado de Abacaxi</h4>
-    <p class="text-green-600 text-2xl font-bold mb-4">A partir de R$ 50,00</p>
-    <ul class="text-gray-600 text-sm mb-4 list-disc pl-5">
-        <li>Travessa 650g: R$ 50,00</li>
-        <li>Travessa 1,5kg: R$ 120,00</li>
-        <li>Travessa 1,2kg: R$ 105,00</li>
-    </ul>
-    <button onclick="comprarNatal('Gelado de Abacaxi', 'A partir de R$ 50,00')" class="w-full bg-red-500 text-white font-semibold py-2 rounded-lg hover:bg-red-600 transition duration-300">
-        Encomendar para o Natal
-    </button>
-</div>
+                <div class="bg-white p-6 rounded-xl shadow-2xl hover:shadow-red-300 transition duration-300 border-t-8 border-pink-500 flex flex-col h-full">
+                    <img src="images/bombom-mix.jpeg" alt="Bombom Mix (Morango/Uva)" class="w-full h-40 md:h-48 object-cover rounded-lg mb-4">
+                    <h4 class="text-xl font-semibold text-red-700 mb-2">Bombom Mix (Morango/Uva)</h4>
+                    
+                    <div class="mt-auto space-y-2">
+                        <button onclick="adicionarAoCarrinho('Bombom Mix (650g)', 60.00)" class="w-full bg-pink-100 text-pink-800 text-sm font-bold py-2 px-2 rounded hover:bg-pink-200 transition text-left flex justify-between active:scale-95">
+                            <span>650g</span> <span>R$ 60,00 +</span>
+                        </button>
+                        <button onclick="adicionarAoCarrinho('Bombom Mix (1,2kg)', 125.00)" class="w-full bg-pink-100 text-pink-800 text-sm font-bold py-2 px-2 rounded hover:bg-pink-200 transition text-left flex justify-between active:scale-95">
+                            <span>1,2kg</span> <span>R$ 125,00 +</span>
+                        </button>
+                        <button onclick="adicionarAoCarrinho('Bombom Mix (1,5kg)', 135.00)" class="w-full bg-pink-100 text-pink-800 text-sm font-bold py-2 px-2 rounded hover:bg-pink-200 transition text-left flex justify-between active:scale-95">
+                            <span>1,5kg</span> <span>R$ 135,00 +</span>
+                        </button>
+                    </div>
+                </div>
 
-<!-- Produto 8: Pudim de Leite Condensado -->
-<div class="bg-white p-6 rounded-xl shadow-2xl hover:shadow-red-300 transition duration-300 border-t-8 border-amber-400">
-    <img src="images/pudim-leite-condensado.jpeg" alt="Pudim de Leite Condensado" class="w-full h-40 md:h-48 object-cover rounded-lg mb-4">
-    <h4 class="text-xl font-semibold text-red-700 mb-2">Pudim de Leite Condensado</h4>
-    <p class="text-green-600 text-2xl font-bold mb-4">R$ 45,00 (1kg)</p>
-    <ul class="text-gray-600 text-sm mb-4 list-disc pl-5">
-        <li>Travessa 1kg: R$ 45,00</li>
-    </ul>
-    <button onclick="comprarNatal('Pudim de Leite Condensado (1kg)', 'R$ 45,00')" class="w-full bg-red-500 text-white font-semibold py-2 rounded-lg hover:bg-red-600 transition duration-300">
-        Encomendar para o Natal
-    </button>
-</div>
+                <div class="bg-white p-6 rounded-xl shadow-2xl hover:shadow-red-300 transition duration-300 border-t-8 border-yellow-500 flex flex-col h-full">
+                    <img src="images/gelado-abacaxi.jpeg" alt="Gelado de Abacaxi" class="w-full h-40 md:h-48 object-cover rounded-lg mb-4">
+                    <h4 class="text-xl font-semibold text-red-700 mb-2">Gelado de Abacaxi</h4>
+                    
+                    <div class="mt-auto space-y-2">
+                        <button onclick="adicionarAoCarrinho('Gelado de Abacaxi (650g)', 50.00)" class="w-full bg-yellow-100 text-yellow-800 text-sm font-bold py-2 px-2 rounded hover:bg-yellow-200 transition text-left flex justify-between active:scale-95">
+                            <span>650g</span> <span>R$ 50,00 +</span>
+                        </button>
+                        <button onclick="adicionarAoCarrinho('Gelado de Abacaxi (1,2kg)', 105.00)" class="w-full bg-yellow-100 text-yellow-800 text-sm font-bold py-2 px-2 rounded hover:bg-yellow-200 transition text-left flex justify-between active:scale-95">
+                            <span>1,2kg</span> <span>R$ 105,00 +</span>
+                        </button>
+                        <button onclick="adicionarAoCarrinho('Gelado de Abacaxi (1,5kg)', 120.00)" class="w-full bg-yellow-100 text-yellow-800 text-sm font-bold py-2 px-2 rounded hover:bg-yellow-200 transition text-left flex justify-between active:scale-95">
+                            <span>1,5kg</span> <span>R$ 120,00 +</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-2xl hover:shadow-red-300 transition duration-300 border-t-8 border-amber-400 flex flex-col h-full">
+                    <img src="images/pudim-leite-condensado.jpeg" alt="Pudim de Leite Condensado" class="w-full h-40 md:h-48 object-cover rounded-lg mb-4">
+                    <h4 class="text-xl font-semibold text-red-700 mb-2">Pudim de Leite Condensado</h4>
+                    <p class="text-sm text-gray-500 mb-4">Lisinho e sem furinhos.</p>
+                    
+                    <div class="mt-auto">
+                        <button onclick="adicionarAoCarrinho('Pudim de Leite Condensado (1kg)', 45.00)" class="w-full bg-amber-500 text-white font-semibold py-2 rounded-lg hover:bg-amber-600 transition duration-300 shadow-md active:scale-95">
+                            Adicionar (1kg) - R$ 45,00
+                        </button>
+                    </div>
+                </div>
+
             </div>
-            <!-- Fim do Grid de Produtos de Natal -->
-            
-            <p class="text-center text-lg text-gray-700 mt-12 p-4 bg-yellow-100 rounded-lg shadow-inner">
-                Confira todas as opções de tamanhos e preços acima e faça sua encomenda com antecedência!
+            <p class="text-center text-lg text-gray-700 mt-12 p-4 bg-yellow-100 rounded-lg shadow-inner border border-yellow-200">
+                ⚠️ As travessas não são retornáveis (inclusas no valor). As taças são de acrílico de alta qualidade.
             </p>
         </div>
     </section>
 
-    <!-- Seção de Docinhos Natalinos -->
     <section class="py-16 md:py-24 bg-red-50" id="docinhos-natal">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h3 class="text-3xl font-bold text-center mb-12 text-red-700">🎁 Docinhos Natalinos</h3>
 
-            <!-- Grid de Docinhos -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
 
-                <!-- Docinho 1: Caixinha de brigadeiros -->
-                <div class="bg-white p-6 rounded-xl shadow-2xl hover:shadow-red-300 transition duration-300 border-t-8 border-red-500">
-                    <img src="images/caixinha-brigadeiro.jpeg" alt="Caixinha de Brigadeiros" loading="lazy" class="w-full h-40 md:h-48 object-cover rounded-lg mb-4">
-                    <h4 class="text-xl font-semibold text-red-700 mb-2">Caixinha de Brigadeiros 6 Unidades</h4>
-                    <p class="text-green-600 text-2xl font-bold mb-4">R$ 14,00</p>
-                    <button onclick="comprarNatal('Caixinha de Brigadeiros 6 Unidades', 'R$ 14,00')" class="w-full bg-red-500 text-white font-semibold py-2 rounded-lg hover:bg-red-600 transition duration-300">
-                        Encomendar para o Natal
+                <div class="bg-white p-6 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 flex flex-col justify-between">
+                    <div>
+                        <img src="images/caixinha-brigadeiro.jpeg" alt="Caixinha de Brigadeiros" loading="lazy" class="w-full h-40 md:h-48 object-cover rounded-lg mb-4">
+                        <h4 class="text-lg font-bold text-gray-800 mb-2">Caixinha de Brigadeiros 6 Un.</h4>
+                        <p class="text-red-600 font-bold text-xl mb-4">R$ 14,00</p>
+                    </div>
+                    <button onclick="adicionarAoCarrinho('Caixinha Brigadeiros (6 un)', 14.00)" class="w-full bg-green-600 text-white font-semibold py-2 rounded-lg hover:bg-green-700 transition active:scale-95">
+                        Adicionar ao Carrinho 🛒
                     </button>
                 </div>
 
-                <!-- Docinho 2: Árvore de brigadeiro -->
-                <div class="bg-white p-6 rounded-xl shadow-2xl hover:shadow-red-300 transition duration-300 border-t-8 border-yellow-500">
-                    <img src="images/arvore-brigadeiro.jpeg" alt="Árvore de Brigadeiro" loading="lazy" class="w-full h-40 md:h-48 object-cover rounded-lg mb-4">
-                    <h4 class="text-xl font-semibold text-red-700 mb-2">Árvore de Brigadeiro (Ninho e Chocolate)</h4>
-                    <p class="text-green-600 text-2xl font-bold mb-4">R$ 60,00</p>
-                    <button onclick="comprarNatal('Árvore de Brigadeiro', 'R$ 60,00')" class="w-full bg-red-500 text-white font-semibold py-2 rounded-lg hover:bg-red-600 transition duration-300">
-                        Encomendar para o Natal
+                <div class="bg-white p-6 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 flex flex-col justify-between">
+                    <div>
+                        <img src="images/arvore-brigadeiro.jpeg" alt="Árvore de Brigadeiro" loading="lazy" class="w-full h-40 md:h-48 object-cover rounded-lg mb-4">
+                        <h4 class="text-lg font-bold text-gray-800 mb-2">Árvore de Brigadeiro</h4>
+                        <p class="text-gray-500 text-xs mb-2">Ninho e Chocolate</p>
+                        <p class="text-red-600 font-bold text-xl mb-4">R$ 60,00</p>
+                    </div>
+                    <button onclick="adicionarAoCarrinho('Árvore de Brigadeiro', 60.00)" class="w-full bg-green-600 text-white font-semibold py-2 rounded-lg hover:bg-green-700 transition active:scale-95">
+                        Adicionar ao Carrinho 🛒
                     </button>
                 </div>
 
-                <!-- Docinho 3: Guirlanda de Brownie -->
-                <div class="bg-white p-6 rounded-xl shadow-2xl hover:shadow-red-300 transition duration-300 border-t-8 border-red-500">
-                    <img src="images/guirlanda-brownie.jpeg" alt="Guirlanda de Brownie" loading="lazy" class="w-full h-40 md:h-48 object-cover rounded-lg mb-4">
-                    <h4 class="text-xl font-semibold text-red-700 mb-2">Guirlanda de Brownie (disco aro 20 -1kg - 10 fatias)</h4>
-                    <p class="text-green-600 text-2xl font-bold mb-4">R$ 130,00</p>
-                    <button onclick="comprarNatal('Guirlanda de Brownie', 'R$ 130,00')" class="w-full bg-red-500 text-white font-semibold py-2 rounded-lg hover:bg-red-600 transition duration-300">
-                        Encomendar para o Natal
+                <div class="bg-white p-6 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 flex flex-col justify-between">
+                    <div>
+                        <img src="images/guirlanda-brownie.jpeg" alt="Guirlanda de Brownie" loading="lazy" class="w-full h-40 md:h-48 object-cover rounded-lg mb-4">
+                        <h4 class="text-lg font-bold text-gray-800 mb-2">Guirlanda de Brownie</h4>
+                        <p class="text-gray-500 text-xs mb-2">Aro 20 (1kg) - 10 Fatias</p>
+                        <p class="text-red-600 font-bold text-xl mb-4">R$ 130,00</p>
+                    </div>
+                    <button onclick="adicionarAoCarrinho('Guirlanda de Brownie (1kg)', 130.00)" class="w-full bg-green-600 text-white font-semibold py-2 rounded-lg hover:bg-green-700 transition active:scale-95">
+                        Adicionar ao Carrinho 🛒
                     </button>
                 </div>
 
-                <!-- Docinho 4: Cone trufado -->
-                <div class="bg-white p-6 rounded-xl shadow-2xl hover:shadow-red-300 transition duration-300 border-t-8 border-yellow-500">
-                    <img src="images/cone-trufado.jpeg" alt="Cone Trufado" loading="lazy" class="w-full h-40 md:h-48 object-cover rounded-lg mb-4">
-                    <h4 class="text-xl font-semibold text-red-700 mb-2">Cone Trufado (Árvore de Natal)</h4>
-                    <p class="text-green-600 text-2xl font-bold mb-4">R$ 12,00</p>
-                    <button onclick="comprarNatal('Cone Trufado', 'R$ 12,00')" class="w-full bg-red-500 text-white font-semibold py-2 rounded-lg hover:bg-red-600 transition duration-300">
-                        Encomendar para o Natal
+                <div class="bg-white p-6 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 flex flex-col justify-between">
+                    <div>
+                        <img src="images/cone-trufado.jpeg" alt="Cone Trufado" loading="lazy" class="w-full h-40 md:h-48 object-cover rounded-lg mb-4">
+                        <h4 class="text-lg font-bold text-gray-800 mb-2">Cone Trufado (Árvore)</h4>
+                        <p class="text-red-600 font-bold text-xl mb-4">R$ 12,00</p>
+                    </div>
+                    <button onclick="adicionarAoCarrinho('Cone Trufado', 12.00)" class="w-full bg-green-600 text-white font-semibold py-2 rounded-lg hover:bg-green-700 transition active:scale-95">
+                        Adicionar ao Carrinho 🛒
                     </button>
                 </div>
 
             </div>
-            <!-- Fim do Grid de Docinhos -->
         </div>
     </section>
 
-    <!-- Seção de Biscoitos Natalinos -->
     <section class="py-16 md:py-24" id="biscoitos-natal">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h3 class="text-3xl font-bold text-center mb-12 text-red-700">🍪 Biscoitos Natalinos (200gr)</h3>
 
-            <!-- Grid de Biscoitos -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-
-                <!-- Biscoito 1: Biscoitos de Laranja -->
-                <div class="bg-white p-6 rounded-xl shadow-2xl hover:shadow-red-300 transition duration-300 border-t-8 border-yellow-500">
-                    <img src="images/biscoitos-laranja.png" alt="Biscoitos de Laranja" loading="lazy" class="w-full h-40 md:h-48 object-cover rounded-lg mb-4">
-                    <h4 class="text-xl font-semibold text-red-700 mb-2">Biscoitos de Laranja</h4>
-                    <p class="text-green-600 text-2xl font-bold mb-4">R$ 12,00</p>
-                    <p class="text-gray-500 text-sm mb-4">Embalagem: 200gr</p>
-                    <button onclick="comprarNatal('Biscoitos de Laranja (200gr)', 'R$ 12,00')" class="w-full bg-red-500 text-white font-semibold py-2 rounded-lg hover:bg-red-600 transition duration-300">
-                        Encomendar para o Natal
+                <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-yellow-400 flex flex-col justify-between">
+                    <div>
+                        <img src="images/biscoitos-laranja.png" alt="Biscoitos de Laranja" loading="lazy" class="w-full h-40 md:h-48 object-cover rounded-lg mb-4">
+                        <h4 class="text-lg font-bold text-gray-800">Biscoitos de Laranja</h4>
+                        <p class="text-red-600 font-bold text-xl mb-4">R$ 12,00</p>
+                    </div>
+                    <button onclick="adicionarAoCarrinho('Biscoitos de Laranja (200gr)', 12.00)" class="w-full bg-red-600 text-white font-semibold py-2 rounded-lg hover:bg-red-700 transition active:scale-95">
+                        Adicionar
                     </button>
                 </div>
 
-                <!-- Biscoito 2: Biscoitos Decorados -->
-                <div class="bg-white p-6 rounded-xl shadow-2xl hover:shadow-red-300 transition duration-300 border-t-8 border-red-500">
-                    <img src="images/biscoitos-decorados.jpg" alt="Biscoitos Decorados" loading="lazy" class="w-full h-40 md:h-48 object-cover rounded-lg mb-4">
-                    <h4 class="text-xl font-semibold text-red-700 mb-2">Biscoitos Decorados</h4>
-                    <p class="text-green-600 text-2xl font-bold mb-4">R$ 14,00</p>
-                    <p class="text-gray-500 text-sm mb-4">Embalagem: 200gr</p>
-                    <button onclick="comprarNatal('Biscoitos Decorados (200gr)', 'R$ 14,00')" class="w-full bg-red-500 text-white font-semibold py-2 rounded-lg hover:bg-red-600 transition duration-300">
-                        Encomendar para o Natal
+                <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-red-500 flex flex-col justify-between">
+                    <div>
+                        <img src="images/biscoitos-decorados.jpg" alt="Biscoitos Decorados" loading="lazy" class="w-full h-40 md:h-48 object-cover rounded-lg mb-4">
+                        <h4 class="text-lg font-bold text-gray-800">Biscoitos Decorados</h4>
+                        <p class="text-red-600 font-bold text-xl mb-4">R$ 14,00</p>
+                    </div>
+                    <button onclick="adicionarAoCarrinho('Biscoitos Decorados (200gr)', 14.00)" class="w-full bg-red-600 text-white font-semibold py-2 rounded-lg hover:bg-red-700 transition active:scale-95">
+                        Adicionar
                     </button>
                 </div>
 
-                <!-- Biscoito 3: Biscoitos Tradicionais -->
-                <div class="bg-white p-6 rounded-xl shadow-2xl hover:shadow-red-300 transition duration-300 border-t-8 border-yellow-500">
-                    <img src="images/biscoitos-tradicionais.jpg" alt="Biscoitos Tradicionais" loading="lazy" class="w-full h-40 md:h-48 object-cover rounded-lg mb-4">
-                    <h4 class="text-xl font-semibold text-red-700 mb-2">Biscoitos Tradicionais</h4>
-                    <p class="text-green-600 text-2xl font-bold mb-4">R$ 10,00</p>
-                    <p class="text-gray-500 text-sm mb-4">Embalagem: 200gr</p>
-                    <button onclick="comprarNatal('Biscoitos Tradicionais (200gr)', 'R$ 10,00')" class="w-full bg-red-500 text-white font-semibold py-2 rounded-lg hover:bg-red-600 transition duration-300">
-                        Encomendar para o Natal
+                <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-yellow-400 flex flex-col justify-between">
+                    <div>
+                        <img src="images/biscoitos-tradicionais.jpg" alt="Biscoitos Tradicionais" loading="lazy" class="w-full h-40 md:h-48 object-cover rounded-lg mb-4">
+                        <h4 class="text-lg font-bold text-gray-800">Biscoitos Tradicionais</h4>
+                        <p class="text-red-600 font-bold text-xl mb-4">R$ 10,00</p>
+                    </div>
+                    <button onclick="adicionarAoCarrinho('Biscoitos Tradicionais (200gr)', 10.00)" class="w-full bg-red-600 text-white font-semibold py-2 rounded-lg hover:bg-red-700 transition active:scale-95">
+                        Adicionar
                     </button>
                 </div>
-
             </div>
-            <!-- Fim do Grid de Biscoitos -->
         </div>
     </section>
 
-    <!-- Rodapé (Com informações importantes) -->
-    <footer class="bg-red-800 text-white py-12">
+    <footer class="bg-red-900 text-white py-12 pb-24">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h4 class="text-xl font-bold mb-4 text-yellow-300">Informações Importantes de Natal</h4>
-            <div class="text-sm text-red-200 space-y-2">
+            <div class="text-sm text-red-100 space-y-2">
                 <p>⚠️ Receberemos encomendas até o dia **21/12**.</p>
-                <p>💰 Seu pedido será confirmado após o pagamento de 50% do valor total! Aceitamos PIX, dinheiro e cartão, parcelamos em até 3x com juros.</p>
-                <p>🚚 Entregas serão realizadas até as 14h do dia **24/12**.</p>
-                <p>📞 Contato: (12) 99654-3722</p>
-                <p>Sobremesas sem adição de conservantes, validade até 5 dias sob refrigeração (EXCETO itens com morango fresco: validade de 1 dia).</p>
+                <p>💰 Pedido confirmado mediante 50% de sinal. (Pix/Cartão/Dinheiro).</p>
+                <p>🚚 Entregas/Retiradas até as 14h do dia **24/12**.</p>
+                <p>📞 Dúvidas? (12) 99654-3722</p>
             </div>
-            <div class="mt-8 border-t border-red-700 pt-6 text-sm text-gray-400">
+            <div class="mt-8 border-t border-red-800 pt-6 text-sm text-gray-400">
                 &copy; 2025 Doçuras da Vovó Confeitaria. Cardápio Especial de Natal.
             </div>
         </div>
     </footer>
 
-    <!-- Script para Simular a Ação de Compra e Integrar com WhatsApp (Natal) -->
-    <script>
-        function comprarNatal(nome, preco) {
-            // Esta função prepara a mensagem para o WhatsApp e redireciona.
+    <div id="barrinha-carrinho" onclick="abrirModalCarrinho()" class="fixed bottom-4 right-4 left-4 md:left-auto md:w-80 bg-green-600 hover:bg-green-700 text-white p-4 rounded-xl shadow-2xl cursor-pointer transition-all duration-300 z-50 hidden flex justify-between items-center transform hover:scale-105 border-2 border-white">
+        <div class="flex items-center space-x-3">
+            <span class="text-2xl">🛒</span>
+            <div class="flex flex-col">
+                <span class="font-bold text-sm">Meu Pedido</span>
+                <span class="text-xs text-green-100" id="contador-itens">0 itens</span>
+            </div>
+        </div>
+        <div class="font-bold text-lg">
+            R$ <span id="valor-total">0,00</span>
+        </div>
+    </div>
 
-            const mensagem = `Que delícia! Para encomendar o produto de Natal "${nome}" (${preco}), nossa equipe de atendimento entrará em contato com você via WhatsApp para confirmar os detalhes do pedido e a data de entrega. Em 1,5s você será direcionado(a) ao chat.`;
-            
-            // O número de telefone: (12) 99654-3722. Usando 55 (código do país) + 12 (DDD) + 996543722
-            const telefoneWhatsApp = '5512996543722'; 
-            
-            const textoPedido = `Olá! Gostaria de encomendar o item do Cardápio de Natal: ${nome}. Favor confirmar os tamanhos e o valor.`;
-            const urlWhatsApp = `https://api.whatsapp.com/send?phone=${telefoneWhatsApp}&text=${encodeURIComponent(textoPedido)}`;
-            
-            // Exibe uma mensagem de feedback (reutilizando o modal da página principal se necessário, mas implementado localmente)
-            document.getElementById('feedback-message-natal').textContent = mensagem;
-            document.getElementById('feedback-modal-natal').classList.remove('hidden');
+    <div id="modal-carrinho" class="fixed inset-0 bg-black bg-opacity-60 z-50 hidden flex justify-end">
+        <div class="bg-white w-full md:w-96 h-full flex flex-col shadow-xl animate-slide-in">
+            <div class="bg-red-700 text-white p-4 flex justify-between items-center shadow-md">
+                <h3 class="font-bold text-lg flex items-center gap-2">🛒 Carrinho de Natal</h3>
+                <button onclick="fecharModalCarrinho()" class="text-white hover:bg-red-800 rounded-full p-1 transition">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
 
-            // Redireciona para o WhatsApp após um pequeno atraso.
-            setTimeout(() => {
-                window.open(urlWhatsApp, '_blank');
-            }, 1500); // 1.5 segundos de atraso para o usuário ler a mensagem
-        }
-        
-        // Fechar o modal de feedback
-        function fecharModalNatal() {
-            document.getElementById('feedback-modal-natal').classList.add('hidden');
-        }
-    </script>
+            <div id="lista-itens" class="flex-1 overflow-y-auto p-4 space-y-3 bg-gray-50">
+                </div>
 
-    <!-- Modal de Feedback (Substitui o alert()) -->
-    <div id="feedback-modal-natal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50">
-        <div class="bg-white p-6 rounded-lg shadow-xl max-w-sm w-full">
-            <h3 class="text-xl font-bold mb-4 text-red-700">Pedido de Natal em Andamento!</h3>
-            <p id="feedback-message-natal" class="text-gray-700 mb-6"></p>
-            <button onclick="fecharModalNatal()" class="w-full bg-red-600 text-white font-semibold py-2 rounded-lg hover:bg-red-700 transition duration-300">
-                Fechar e Continuar Navegando
+            <div class="p-4 bg-white border-t border-gray-200 shadow-[0_-5px_15px_rgba(0,0,0,0.05)]">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="font-bold text-gray-700">Total:</span>
+                    <span class="font-bold text-2xl text-red-600">R$ <span id="total-modal">0,00</span></span>
+                </div>
+                <button onclick="finalizarCompraWhatsApp()" class="w-full bg-green-600 text-white font-bold py-3 rounded-lg hover:bg-green-700 transition duration-300 flex justify-center items-center space-x-2 shadow-lg hover:shadow-green-200">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.151-.174.2-.298.3-.495.099-.198.05-.372-.025-.52-.075-.149-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                <span>Enviar Pedido no WhatsApp</span>
+            </button>
+            <button onclick="limparCarrinho()" class="w-full mt-3 text-red-400 text-xs hover:text-red-600 hover:underline text-center">
+                Esvaziar carrinho
             </button>
         </div>
     </div>
 
-    <!-- Script: tentativa automática de extensões alternativas se a imagem falhar -->
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const imgs = document.querySelectorAll('#produtos-natal img');
-        const exts = ['.jpeg', '.jpg', '.png'];
+        // 1. CARREGAR DADOS
+        let carrinho = JSON.parse(localStorage.getItem('carrinhoVovo')) || [];
 
-        imgs.forEach(img => {
-            // armazena a base do src (sem extensão) para tentar várias extensões
-            let src = img.getAttribute('src') || '';
-            const m = src.match(/^(.*?)(?:\.[a-zA-Z0-9]{1,5})?$/);
-            const base = m ? m[1] : src; // sem extensão
-            img.dataset._baseSrc = base;
-            img.dataset._tried = JSON.stringify([]);
+        // Correção para versões antigas do carrinho sem qtd
+        carrinho = carrinho.map(item => {
+            if(!item.qtd) item.qtd = 1;
+            return item;
+        });
 
-            const onError = function() {
-                let tried = JSON.parse(this.dataset._tried || '[]');
+        // 2. FUNÇÃO ADICIONAR (Soma quantidade se já existe)
+        function adicionarAoCarrinho(nome, preco) {
+            const itemExistente = carrinho.find(item => item.nome === nome);
+            if (itemExistente) {
+                itemExistente.qtd += 1;
+            } else {
+                carrinho.push({ nome: nome, preco: parseFloat(preco), qtd: 1 });
+            }
+            salvarCarrinho();
+            atualizarVisualizacao();
+            
+            // Efeito visual no botão
+            const btn = event.target.closest('button');
+            if(btn) {
+                const textoOriginal = btn.innerHTML;
+                btn.innerHTML = "✅ Add";
+                btn.classList.add("bg-green-600", "text-white");
+                setTimeout(() => {
+                    btn.innerHTML = textoOriginal;
+                    btn.classList.remove("bg-green-600", "text-white");
+                }, 800);
+            }
+        }
 
-                // encontra próxima extensão que ainda não foi tentada
-                const next = exts.find(e => !tried.includes(e));
-                if (next) {
-                    tried.push(next);
-                    this.dataset._tried = JSON.stringify(tried);
-                    // evita loop ao reatribuir src: remove listener temporariamente
-                    this.removeEventListener('error', onError);
-                    this.src = this.dataset._baseSrc + next;
-                    // reatacha listener caso ainda falhe com a nova extensão
-                    setTimeout(() => this.addEventListener('error', onError), 50);
+        // 3. ALTERAR QUANTIDADE (+ e -)
+        function alterarQtd(nome, acao) {
+            const item = carrinho.find(i => i.nome === nome);
+            if (!item) return;
+
+            if (acao === '+') {
+                item.qtd += 1;
+            } else if (acao === '-') {
+                item.qtd -= 1;
+                if (item.qtd <= 0) {
+                    removerItem(nome);
                     return;
                 }
+            }
+            salvarCarrinho();
+            atualizarVisualizacao();
+        }
 
-                // se já tentou todas as extensões, exibe um placeholder amigável
-                this.removeEventListener('error', onError);
-                this.src = 'https://placehold.co/400x300/F5F5F5/AAA?text=Imagem+indispon%C3%ADvel';
-            };
+        // 4. REMOVER ITEM
+        function removerItem(nome) {
+            carrinho = carrinho.filter(item => item.nome !== nome);
+            salvarCarrinho();
+            atualizarVisualizacao();
+        }
 
-            // se o src inicial não tiver extensão conhecida, tenta adicionar .jpeg primeiro
-            if (!/\.[a-zA-Z0-9]{1,5}$/.test(src)) {
-                img.src = base + '.jpeg';
-                img.dataset._tried = JSON.stringify(['.jpeg']);
+        // 5. SALVAR
+        function salvarCarrinho() {
+            localStorage.setItem('carrinhoVovo', JSON.stringify(carrinho));
+        }
+
+        // 6. ATUALIZAR TELA (Layout com Quantidade)
+        function atualizarVisualizacao() {
+            const total = carrinho.reduce((acc, item) => acc + (item.preco * item.qtd), 0);
+            const contadorTotal = carrinho.reduce((acc, item) => acc + item.qtd, 0);
+
+            const contadorEl = document.getElementById('contador-itens');
+            const totalEl = document.getElementById('valor-total');
+            const totalModalEl = document.getElementById('total-modal');
+            const barrinha = document.getElementById('barrinha-carrinho');
+            const lista = document.getElementById('lista-itens');
+
+            if(contadorEl) contadorEl.innerText = contadorTotal + (contadorTotal === 1 ? ' item' : ' itens');
+            if(totalEl) totalEl.innerText = total.toFixed(2).replace('.', ',');
+            if(totalModalEl) totalModalEl.innerText = total.toFixed(2).replace('.', ',');
+
+            if (carrinho.length > 0) {
+                barrinha.classList.remove('hidden');
+            } else {
+                barrinha.classList.add('hidden');
+                fecharModalCarrinho();
             }
 
-            img.addEventListener('error', onError);
-        });
-    });
-    </script>
+            lista.innerHTML = '';
+            if (carrinho.length === 0) {
+                lista.innerHTML = '<p class="text-center text-gray-500 mt-10">Seu carrinho está vazio.</p>';
+                return;
+            }
 
+            carrinho.forEach(item => {
+                const subtotal = item.preco * item.qtd;
+                const div = document.createElement('div');
+                div.className = 'bg-white p-3 rounded-lg shadow-sm border border-gray-100 flex flex-col gap-2';
+                
+                div.innerHTML = `
+                    <div class="flex justify-between items-start">
+                        <p class="font-bold text-gray-800 text-sm w-3/4 leading-tight">${item.nome}</p>
+                        <button onclick="removerItem('${item.nome}')" class="text-gray-400 hover:text-red-500">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                        </button>
+                    </div>
+                    <div class="flex justify-between items-center mt-1">
+                        <div class="flex items-center border border-gray-300 rounded-md">
+                            <button onclick="alterarQtd('${item.nome}', '-')" class="px-2 py-1 text-pink-600 hover:bg-pink-50 font-bold text-lg">-</button>
+                            <span class="px-2 py-1 text-sm font-semibold text-gray-700 min-w-[30px] text-center">${item.qtd}</span>
+                            <button onclick="alterarQtd('${item.nome}', '+')" class="px-2 py-1 text-pink-600 hover:bg-pink-50 font-bold text-lg">+</button>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xs text-gray-500">Unit: R$ ${item.preco.toFixed(2).replace('.', ',')}</p>
+                            <p class="text-red-600 font-bold">R$ ${subtotal.toFixed(2).replace('.', ',')}</p>
+                        </div>
+                    </div>
+                `;
+                lista.appendChild(div);
+            });
+        }
+
+        // 7. CONTROLES DO MODAL
+        function abrirModalCarrinho() {
+            document.getElementById('modal-carrinho').classList.remove('hidden');
+        }
+        function fecharModalCarrinho() {
+            document.getElementById('modal-carrinho').classList.add('hidden');
+        }
+        function limparCarrinho() {
+            if(confirm('Tem certeza que deseja esvaziar todo o carrinho?')) {
+                carrinho = [];
+                salvarCarrinho();
+                atualizarVisualizacao();
+            }
+        }
+
+        // 8. ENVIAR WHATSAPP (Formatado com quantidades)
+        function finalizarCompraWhatsApp() {
+            if (carrinho.length === 0) return;
+
+            let telefone = "5512996543722"; // SEU NÚMERO
+            let quebraLinha = "%0A";
+            
+            let mensagem = `🎄 *PEDIDO DE NATAL - Doçuras da Vovó* 🎄${quebraLinha}${quebraLinha}`;
+            mensagem += `Gostaria de encomendar:${quebraLinha}${quebraLinha}`;
+            let total = 0;
+
+            carrinho.forEach(item => {
+                let subtotal = item.preco * item.qtd;
+                total += subtotal;
+                mensagem += `🎁 *${item.qtd}x* ${item.nome} ... R$ ${subtotal.toFixed(2).replace('.', ',')}${quebraLinha}`;
+            });
+
+            mensagem += `${quebraLinha}-----------------------------------${quebraLinha}`;
+            mensagem += `*💰 Valor Total: R$ ${total.toFixed(2).replace('.', ',')}*${quebraLinha}`;
+            mensagem += `-----------------------------------${quebraLinha}${quebraLinha}`;
+            mensagem += `Aguardo instruções de pagamento do sinal (50%).`;
+
+            let url = `https://api.whatsapp.com/send?phone=${telefone}&text=${mensagem}`;
+            window.open(url, '_blank');
+        }
+
+        // Inicializa ao abrir
+        atualizarVisualizacao();
+
+        // 9. SCRIPT EXTRA: FALLBACK DE IMAGENS
+        document.addEventListener('DOMContentLoaded', () => {
+            const imgs = document.querySelectorAll('img');
+            const exts = ['.jpeg', '.jpg', '.png'];
+            imgs.forEach(img => {
+                let src = img.getAttribute('src') || '';
+                const m = src.match(/^(.*?)(?:\.[a-zA-Z0-9]{1,5})?$/);
+                const base = m ? m[1] : src;
+                img.dataset._baseSrc = base;
+                img.dataset._tried = JSON.stringify([]);
+                const onError = function() {
+                    let tried = JSON.parse(this.dataset._tried || '[]');
+                    const next = exts.find(e => !tried.includes(e));
+                    if (next) {
+                        tried.push(next);
+                        this.dataset._tried = JSON.stringify(tried);
+                        this.removeEventListener('error', onError);
+                        this.src = this.dataset._baseSrc + next;
+                        setTimeout(() => this.addEventListener('error', onError), 50);
+                        return;
+                    }
+                    this.removeEventListener('error', onError);
+                    this.src = 'https://placehold.co/400x300/fecaca/991b1b?text=Do%C3%A7ura+de+Natal'; 
+                };
+                if (!/\.[a-zA-Z0-9]{1,5}$/.test(src)) {
+                    img.src = base + '.jpeg';
+                    img.dataset._tried = JSON.stringify(['.jpeg']);
+                }
+                img.addEventListener('error', onError);
+            });
+        });
+    </script>
 </body>
 </html>
